@@ -133,7 +133,7 @@ get_relevant_commits()
   if [[ $number_of_tags == "0" ]]
   then
     echo "No tags exist. Processing all commits"
-    commit_messages=$(git log main.. --reverse --format=%s)
+    commit_messages=$(git log origin/main.. --reverse --format=%s)
   else
     if [[ $number_of_tags == "1" ]]
     then
