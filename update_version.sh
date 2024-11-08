@@ -77,7 +77,7 @@ get_version_increment_type()
 #   current_version: The current version of the Maven project, e.g. 1.0.0
 get_current_version()
 {
-  current_version=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
+  current_version=$(./mvnw -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)
   current_version=$(echo "$current_version" | head -1 | xargs)
 }
 
@@ -155,7 +155,7 @@ get_relevant_commits()
 #   [none]
 make_version_changes()
 {
-  mvn -q versions:set -DnewVersion="$1" -DprocessAllModules -DgenerateBackupPoms=false
+  ./mvnw -q versions:set -DnewVersion="$1" -DprocessAllModules -DgenerateBackupPoms=false
   if [[ -z "$ACCESS_TOKEN" ]]
   then
     local repo="https://github.com/$GITHUB_REPOSITORY"
@@ -164,9 +164,9 @@ make_version_changes()
   fi
   git add ./\*pom.xml
   git -c "user.email=$GIT_EMAIL" -c "user.name=$GIT_USERNAME" commit -m "Increment version to $1 [skip ci]"
-  git tag "$VERSION_PREFIX$1"
-  git push "$repo" --follow-tags
-  git push "$repo" --tags
+  #git tag "$VERSION_PREFIX$1"
+  git push "$repo" #--follow-tags
+  #git push "$repo" --tags
 }
 
 if [[ -z "$GIT_EMAIL" ]]
