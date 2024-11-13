@@ -62,7 +62,7 @@ get_version_increment_type()
   elif [[ "$1" =~ ^[Ff][Ee][Aa][Tt](\(.*\))?:.*$ ]]
   then
     version_increment_type="$MINOR"
-  elif [[ "$1" =~ ^[Ff][Ii][Xx](\(.*\))?:.*$ ]]
+  elif [[ "$1" =~ ^[Ff][Ii][Xx]|[Cc][Hh][Oo][Rr][Ee](\(.*\))?:.*$ ]]
   then
     version_increment_type="$PATCH"
   else
