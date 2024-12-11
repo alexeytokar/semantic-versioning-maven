@@ -163,7 +163,7 @@ make_version_changes()
     local repo="https://$GITHUB_ACTOR:$ACCESS_TOKEN@github.com/$GITHUB_REPOSITORY.git"
   fi
   git add ./\*pom.xml
-  git -c "user.email=$GIT_EMAIL" -c "user.name=$GIT_USERNAME" commit -m "Increment version to $1 [skip ci]"
+  git -c "user.email=$GIT_EMAIL" -c "user.name=$GIT_USERNAME" commit -m "Increment version to $1"
   #git tag "$VERSION_PREFIX$1"
   git push "$repo" #--follow-tags
   #git push "$repo" --tags
